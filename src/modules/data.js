@@ -16,6 +16,7 @@ async function fetchHighScoreData() {
         return data;
 
     } catch (error) {
+        console.error(error);
         throw new Error('Failed to fetch high score data');
     }
 }
