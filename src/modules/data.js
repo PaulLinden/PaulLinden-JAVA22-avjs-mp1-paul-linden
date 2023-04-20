@@ -8,8 +8,8 @@ const orderdList = document.querySelector('ol');
 // Function to fetch high-score data from Firebase
 async function fetchHighScoreData() {
     try {
-        const url = 'https://r-p-s-2c0f0-default-rtdb.europe-west1.firebasedatabase.app/high-score.json';
-        response = await fetch(url);
+        //const url = 'https://r-p-s-2c0f0-default-rtdb.europe-west1.firebasedatabase.app/high-score.json';
+        response = await fetch('https://r-p-s-2c0f0-default-rtdb.europe-west1.firebasedatabase.app/high-score.json');
         console.log(response);
         const data = await response.json();
         console.log(data);
