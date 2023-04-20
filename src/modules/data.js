@@ -9,7 +9,7 @@ const orderdList = document.querySelector('ol');
 async function fetchHighScoreData() {
     try {
         const url = 'https://r-p-s-2c0f0-default-rtdb.europe-west1.firebasedatabase.app/high-score.json';
-        response = await fetch(url);
+        const response = await fetch(url);
         console.log(response);
         const data = await response.json();
         console.log(data);
