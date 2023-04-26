@@ -74,7 +74,8 @@ function addEventListenersToImages() {
             timerId = setTimeout(() => {
 
                // Get the computer's choice
-                let computerChoice = getComputerChoice();
+                const computerChoice = getComputerChoice();
+                console.log(computerChoice);
 
                 // Change the class of the computer's image to 'compImg'
                 let computerImage = document.querySelector(`#${computerChoice}`);
@@ -106,30 +107,26 @@ function getComputerChoice() {
 
 //Function that contains logic for finding winner
 function decideWinner(playerChoice, computerChoice) {
-  
-  if (playerChoice === computerChoice) {
-    resultDisplay.textContent = 'Tie!';
-    return;
-  }
 
-  if (
-    (playerChoice === imgIds[0] && computerChoice === imgIds[2]) || 
-    (playerChoice === imgIds[1] && computerChoice === imgIds[0]) ||
-    (playerChoice === imgIds[2] && computerChoice === imgIds[1])
-  ) {
-    score++;
-    resultDisplay.textContent = 'You win!';
-  } else {
-    putToFirebase(player.getName(), player.getScore());
-    score = 0;
-    resultDisplay.textContent = 'You Lose!';
-  }
-  
-  console.log(score);
-  player.setScore(score);
-  updateScoreDisplay(score);
+    // Check if the player wins
+    if (playerChoice === imgIds[1] && computerChoice == imgIds[0] || playerChoice === imgIds[2] && computerChoice == imgIds[1] || playerChoice === imgIds[0] && computerChoice == imgIds[2]) {
+        score++;
+        resultDisplay.textContent = 'You win!';
+    }
+    else if(playerChoice === computerChoice) {// Check if it's a tie
+        resultDisplay.textContent = 'Tie!';
+    }
+    else {// If the player loses
+        // Send the player's name and score to Firebase
+        putToFirebase(player.getName(), player.getScore());
+        // Reset the score to 0
+        score = 0;
+        resultDisplay.textContent = 'You Lose!';
+    }
+    // Update the player's score and display it
+    player.setScore(score);
+    updateScoreDisplay(score);
 }
-
 
 // Resets styles on all images
 function resetImageStyles() {
