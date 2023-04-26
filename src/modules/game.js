@@ -99,7 +99,7 @@ function addEventListenersToImages() {
 // Function to determine the computer's choice
 function getComputerChoice() {
     // Generate a random number from 0 to 2
-    let randomNumber = Math.round(Math.random() * 2);
+    let randomNumber = Math.floor(Math.random() * 3);
     
     // Return the corresponding image ID from the array
     return imgIds[randomNumber];
